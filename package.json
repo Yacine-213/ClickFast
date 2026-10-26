@@ -1,0 +1,20 @@
+{
+  "name": "clickfast",
+  "version": "1.0.0",
+  "description": "ClickFast - Jeu de rapidité au clic",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "clickfast",
+    "game",
+    "devops"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
