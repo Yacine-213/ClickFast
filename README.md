@@ -19,32 +19,44 @@ Ouvrir le fichier `index.html` dans un navigateur.
 
 ### Avec Docker
 
-Construire l'image :
+Construire l'image Docker :
 
+```bash
 docker build -t clickfast .
+```
 
 Lancer le conteneur :
 
+```bash
 docker run -d --name clickfast-app -p 8080:80 clickfast
+```
 
 Ouvrir http://localhost:8080 dans un navigateur.
 
 Pour arrêter le conteneur :
 
+```bash
 docker stop clickfast-app
+```
 
 ## Lancer les tests
 
 Installer les dépendances :
 
+```bash
 npm install
+```
 
-Lancer les tests :
+Exécuter les tests :
 
-
+```bash
 npm test
-
+```
 
 ## Intégration continue
 
-GitHub Actions exécute automatiquement les tests puis construit l'image Docker lors d'un push ou d'une pull request.
+GitHub Actions exécute automatiquement les tests avec Jest puis construit l'image Docker lors d'un push ou d'une pull request.
+
+## Auteur
+
+Yacine Djebbouri
