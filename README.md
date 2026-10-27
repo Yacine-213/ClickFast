@@ -1,5 +1,5 @@
 # ClickFast
-
+![ClickFast CI](https://github.com/Yacine-213/ClickFast/actions/workflows/ci.yml/badge.svg)
 ClickFast est un jeu de rapidité dans lequel le joueur doit cliquer le plus de fois possible en 10 secondes.
 
 ## Technologies utilisées
