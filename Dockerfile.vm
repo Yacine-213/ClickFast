@@ -1,0 +1,18 @@
+FROM docker:27-dind
+
+RUN apk add --no-cache openssh-server openssh-client bash curl
+
+RUN ssh-keygen -A \
+    && mkdir -p /root/.ssh \
+    && chmod 700 /root/.ssh
+
+COPY deploy_key.pub /root/.ssh/authorized_keys
+
+RUN chmod 600 /root/.ssh/authorized_keys \
+    && echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config \
+    && echo 'PubkeyAuthentication yes' >> /etc/ssh/sshd_config \
+    && echo 'PasswordAuthentication no' >> /etc/ssh/sshd_config
+
+EXPOSE 2222 3000 9090 3001
+
+CMD ["sh", "-c", "dockerd-entrypoint.sh & /usr/sbin/sshd -D -p 2222"]

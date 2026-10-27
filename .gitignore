@@ -1,3 +1,7 @@
 node_modules/
 coverage/
 .env
+deploy_key
+deploy_key.pub
+id_rsa
+id_rsa.pub
