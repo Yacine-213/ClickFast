@@ -15,6 +15,29 @@ jobs:
     name: Tests
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: clickfast
+          POSTGRES_PASSWORD: clickfast_test
+          POSTGRES_DB: clickfast
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U clickfast -d clickfast"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      PORT: 3001
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: clickfast
+      DB_PASSWORD: clickfast_test
+      DB_NAME: clickfast
+
     steps:
       - name: Recuperer le code
         uses: actions/checkout@v4
@@ -27,6 +50,13 @@ jobs:
 
       - name: Installer les dependances
         run: npm ci
+
+      - name: Initialiser la base de test
+        run: |
+          PGPASSWORD=clickfast_test psql -h localhost -U clickfast -d clickfast -c "CREATE TABLE IF NOT EXISTS scores (id SERIAL PRIMARY KEY, player VARCHAR(100) NOT NULL, score INTEGER NOT NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP);"
+        env:
+          PGPASSWORD: clickfast_test
+        shell: bash
 
       - name: Lancer les tests
         run: npm test
