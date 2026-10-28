@@ -2,9 +2,10 @@
   "name": "clickfast",
   "version": "1.0.0",
   "description": "ClickFast - Jeu de rapidité au clic",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "start": "node server.js",
+    "test": "jest --runInBand"
   },
   "keywords": [
     "clickfast",
@@ -15,7 +16,8 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "jest": "^30.5.2"
+    "jest": "^30.5.2",
+    "supertest": "^7.3.1"
   },
   "dependencies": {
     "dotenv": "^18.0.9",
